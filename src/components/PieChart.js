@@ -1,8 +1,8 @@
 import * as React from "react";
 import { PieChart, pieArcLabelClasses } from "@mui/x-charts/PieChart";
 
-export default function BasicPie({ data1, title }) {
-  const TOTAL = data1.map((item) => item.value).reduce((a, b) => a + b, 0);
+export default function BasicPie({ data, title }) {
+  const TOTAL = data.map((item) => item.value).reduce((a, b) => a + b, 0);
 
   const getArcLabel = (params) => {
     const percent = params.value / TOTAL;
@@ -27,7 +27,7 @@ export default function BasicPie({ data1, title }) {
         <PieChart
           series={[
             {
-              data: data1,
+              data: data,
               arcLabel: getArcLabel,
             },
           ]}

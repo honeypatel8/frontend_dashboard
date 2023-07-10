@@ -25,9 +25,9 @@ const StatsPage = () => {
         alignItems: "center",
       }}
     >
-      <BasicPie data1={stats.workStateStats} title="Work State Data" />
-      <BasicPie data1={stats.employeeStats} title="Employee Data" />
-      <BasicPie data1={stats.departmentStats} title="Department Data" />
+      <BasicPie data={stats.workStateStats} title="Work State Data" />
+      <BasicPie data={stats.employeeStats} title="Employee Data" />
+      <BasicPie data={stats.departmentStats} title="Department Data" />
     </div>
   );
 };

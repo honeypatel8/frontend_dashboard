@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import fetchBirthdays from "../apis/fetchBirthdays";
 
-const Greeting = ({ greetings }) => {
+
+const Greeting = () => {
+  const [greetings, setGreetings] = useState([]);
+
+  useEffect(() => {
+    fetchBirthdays(setGreetings);
+  }, []);
   return (
-    <div>
-      {greetings.map((employee) => (
-        <h1>{`Happy Birthday ${employee.firstName} ${employee.lastName}`}</h1>
+    <div className="flex flex-col justify-center items-center ">
+
+      {greetings.map((employee, id) => (
+        <h1 key={id} className="text-xl" >{`Happy Birthday ${employee.firstName} ${employee.lastName}`}</h1>
       ))}
     </div>
   );

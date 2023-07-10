@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
 import fetchBirthdays from "../apis/fetchBirthdays";
 import Greeting from "../components/Greeting";
+import Navbar from "../components/Navbar";
+
 
 const Home = () => {
   const [greetings, setGreetings] = useState([]);
@@ -11,7 +14,10 @@ const Home = () => {
 
   return (
     <div>
-      <Greeting greetings={greetings} />
+      <Navbar />
+      <div className="mt-[10vh]">
+        <Outlet></Outlet>
+      </div>
     </div>
   );
 };
