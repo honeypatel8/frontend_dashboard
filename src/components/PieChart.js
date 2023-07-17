@@ -2,7 +2,7 @@ import * as React from "react";
 import { PieChart, pieArcLabelClasses } from "@mui/x-charts/PieChart";
 
 export default function BasicPie({ data, title }) {
-  const TOTAL = data.map((item) => item.value).reduce((a, b) => a + b, 0);
+  const TOTAL = data?.map((item) => item.value).reduce((a, b) => a + b, 0);
 
   const getArcLabel = (params) => {
     const percent = params.value / TOTAL;
@@ -11,18 +11,8 @@ export default function BasicPie({ data, title }) {
 
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          padding: "1rem",
-          margin: "1rem",
-          borderRadius: "8px",
-          boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
-        }}
-      >
-        <h1 style={{ display: "flex", justifyContent: "center" }}>{title}</h1>
+      <div className="flex flex-col justify-center p-[1rem] m-[1rem] shadow-md space-y-2 ">
+        <h1 className="text-center">{title}</h1>
 
         <PieChart
           series={[

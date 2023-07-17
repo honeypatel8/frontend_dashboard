@@ -3,31 +3,31 @@ import fetchWorkStatus from "../apis/fetchWorkStatus";
 import fetchEmployeeStats from "../apis/fetchEmployeeStats";
 import BasicPie from "../components/PieChart";
 import fetchDepartmentStats from "../apis/fetchDepartmentStats";
+import {
+  useGetDepartmentStatsQuery,
+  useGetEmployeesStatsQuery,
+  useGetWorkStateStatsQuery,
+} from "../features/api/user";
 
 const StatsPage = () => {
-  const [stats, setStats] = useState({
-    workStateStats: [],
-    employeeStats: [],
-    departmentStats: [],
-  });
-
-  useEffect(() => {
-    fetchWorkStatus(setStats);
-    fetchEmployeeStats(setStats);
-    fetchDepartmentStats(setStats);
-  }, []);
+  const { data: employeedata, error } = useGetEmployeesStatsQuery();
+  const { data: workStatedata } = useGetWorkStateStatsQuery();
+  const { data: departmentdata } = useGetDepartmentStatsQuery();
+  if (error) {
+    console.log(error);
+  }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <BasicPie data={stats.workStateStats} title="Work State Data" />
-      <BasicPie data={stats.employeeStats} title="Employee Data" />
-      <BasicPie data={stats.departmentStats} title="Department Data" />
+    <div className="flex justify-center items-center">
+      <BasicPie
+        data={workStatedata ? workStatedata : []}
+        title="Work State Data"
+      />
+      <BasicPie data={employeedata ? employeedata : []} title="Employee Data" />
+      <BasicPie
+        data={departmentdata ? departmentdata : []}
+        title="Department Data"
+      />
     </div>
   );
 };
